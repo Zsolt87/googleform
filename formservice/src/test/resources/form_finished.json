@@ -1,0 +1,21 @@
+{
+  "id": 23,
+  "action": "FINISHED",
+  "questions": [
+    {
+      "id": 23,
+      "answer": [
+        "3",
+        "4"
+      ]
+    },
+    {
+      "id": 24,
+      "answer": "test"
+    },
+    {
+      "id": 4,
+      "answer": "3"
+    }
+  ]
+}
