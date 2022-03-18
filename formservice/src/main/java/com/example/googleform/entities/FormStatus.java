@@ -1,7 +1,8 @@
 package com.example.googleform.entities;
 
-public enum Status {
+public enum FormStatus {
     STARTED,
+    CREATED,
     PENDING,
     FINISHED
 }
