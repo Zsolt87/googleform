@@ -32,11 +32,13 @@ public class FormService
     }
 
     public UUID insert(Form form){
+        validateForm(form);
         return formStore.insert(form);
     }
 
-    private boolean validateEvent(UUID eventId){
-        Event event = eventService.getEventById(eventId);
+    private boolean validateForm(Form form){
+        UUID eventId = form.getEventId();
+        Event event = eventService.getEventById(form.getEventId());
 
         if(event == null)
             throw new IllegalArgumentException(String.format("Could not found event with id %s", eventId));

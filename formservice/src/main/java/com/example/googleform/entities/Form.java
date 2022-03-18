@@ -15,7 +15,7 @@ public class Form {
     @Size(min=4)
     private String name;
     @NotNull
-    private Integer eventId;
+    private UUID eventId;
     private FormStatus status;
     private List<Question> questions = new ArrayList();
 }

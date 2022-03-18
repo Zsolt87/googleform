@@ -18,18 +18,18 @@ public class FormController {
     FormService formService;
 
     @GetMapping("form/{id}")
-    public Form getForm(@PathVariable("id") UUID id){
+    public Form get(@PathVariable("id") UUID id){
         return formService.getFormById(id);
-    }
-
-    @PostMapping("form")
-    public UUID insert(@Valid @RequestBody Form form){
-        return formService.insert(form);
     }
 
     @GetMapping("form")
     public Collection<Form> getAll(){
         return formService.getAll();
+    }
+
+    @PostMapping("form")
+    public UUID insert(@Valid @RequestBody Form form){
+        return formService.insert(form);
     }
 
     @DeleteMapping("form/{id}")
