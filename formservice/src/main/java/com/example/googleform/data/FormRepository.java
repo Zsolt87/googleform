@@ -2,16 +2,18 @@ package com.example.googleform.data;
 
 import com.example.googleform.entities.Form;
 import com.example.googleform.entities.FormStatus;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Component;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@Configuration
+@Component
 public class FormRepository {
-    Map<UUID, Form> store = new HashMap<>();
+    private final Map<UUID, Form> store = new HashMap<>();
 
     public Form getFormById(UUID id){
         return store.get(id);

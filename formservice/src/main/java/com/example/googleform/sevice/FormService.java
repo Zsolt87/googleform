@@ -1,48 +1,54 @@
 package com.example.googleform.sevice;
 
-import com.example.googleform.data.FormRepository;
+import com.example.googleform.converter.FormConverter;
 import com.example.googleform.entities.Event;
 import com.example.googleform.entities.Form;
+import com.example.googleform.repository.FormDocument;
+import com.example.googleform.repository.FormRepository;
+import lombok.AllArgsConstructor;
 import lombok.NonNull;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Configuration;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
-@Configuration
-public class FormService
-{
-    @Autowired
-    FormRepository formStore;
+@Service
+@AllArgsConstructor
+public class FormService {
 
-    @Autowired
-    EventService eventService;
+    private final FormRepository formRepository;
+    private final EventService eventService;
+    private final FormConverter formConverter;
 
     public Form getFormById(@NonNull UUID id){
-        return formStore.getFormById(id);
+        //return formRepository.findById(id);
+        return null;
     }
 
-    public Collection<Form> getAll(){
-        return formStore.getAll();
+    public List<Form> getAll(){
+        //return formRepository.findAll().stream().map(formDocument -> formConverter.);
+        return null;
     }
 
     public void remove(@NonNull UUID id){
-        formStore.remove(id);
+        formRepository.deleteById(id);
     }
 
-    public UUID insert(Form form){
-        validateForm(form);
-        return formStore.insert(form);
+    public Form insert(Form form){
+        FormDocument formDocument = formConverter.convertToDocument(form);
+        formDocument = formRepository.save(formDocument);
+        return formConverter.convertToModelFromDocument(formDocument);
     }
 
-    private boolean validateForm(Form form){
-        UUID eventId = form.getEventId();
-        Event event = eventService.getEventById(form.getEventId());
-
-        if(event == null)
-            throw new IllegalArgumentException(String.format("Could not found event with id %s", eventId));
-
-        return true;
-    }
+//    private boolean validateForm(Form form){
+//        UUID eventId = form.getEventId();
+//        Event event = eventService.getEventById(form.getEventId());
+//
+//        if(event == null)
+//            throw new IllegalArgumentException(String.format("Could not found event with id %s", eventId));
+//
+//        return true;
+//    }
 }
+

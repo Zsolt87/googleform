@@ -2,11 +2,12 @@ package com.example.googleform.entities;
 
 import lombok.Data;
 
-import java.time.LocalDate;
+import java.time.Instant;
+import java.util.UUID;
 
 @Data
 public class Event {
-    private Integer id;
-    private LocalDate date;
+    private UUID id;
+    private Instant instant;
     private String name;
 }
