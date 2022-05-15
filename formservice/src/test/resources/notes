@@ -1,0 +1,10 @@
+1.) Client package - event, delete service
+2.) DTO for input from UI
+3.) Handler for custom exceptions
+4.) Separate URL class
+5.) Validation - separate class with output object
+6.) Decorator
+
+Questions:
+1.) stream().filter( intanceof) #does not work
+2.)
