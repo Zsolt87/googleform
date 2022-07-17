@@ -12,12 +12,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Component
 public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
 
-    private final FormUrlService formUrlGenerator;
+    private final FormUrlService formUrlService;
     private final EventService eventService;
 
     @Override
@@ -29,7 +30,8 @@ public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
         List<RadioButtonQuestion> radioButtonQuestions = formDecorator.getRadioButtonQuestions();
 
         return FormDTO.builder().name(model.getName())
-                .eventId(model.getEvent().getId())
+                //TODO
+                .eventId(model.getEvent() == null ? null : model.getEvent().getId())
                 .id(model.getId())
                 .questionsCheckBox(checkBoxQuestions)
                 .questionsFreeText(freeTextQuestions)
@@ -41,7 +43,7 @@ public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
     public Form convertToModelFromDto(FormDTO dto) {
 
         return Form.builder()
-                .formUrl(formUrlGenerator.generateUrl())
+                .formUrl(formUrlService.retrieveAvailableUrl())
                 .id(dto.getId())
                 .name(dto.getName())
 //                .questions(new ArrayList<Question>(){
@@ -61,7 +63,7 @@ public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
     public FormDocument convertToDocument(Form form) {
         return FormDocument.builder()
                 .name(form.getName())
-                .id(form.getId())
+                .id(form.getId() == null ? UUID.randomUUID() : form.getId() )
                 .formUrl(form.getFormUrl())
                 .status(form.getStatus())
                 .questions(form.getQuestions())

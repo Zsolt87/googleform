@@ -6,6 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
-public abstract class MultipleChoiceQuestion extends  Question{
+public abstract class MultipleChoiceQuestion extends Question{
     private final List<String> options = new ArrayList<>();
 }

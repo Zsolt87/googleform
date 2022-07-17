@@ -1,0 +1,10 @@
+googleform:
+  url-generation:
+    batch-size: 10
+    fixed-rate-ms: 600000
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb://mongoadmin:secret@127.0.0.1:27017/formdatabase?authSource=admin
+      database: formdatabase

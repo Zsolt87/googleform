@@ -11,7 +11,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-@Component
 public class FormRepository {
     private final Map<UUID, Form> store = new HashMap<>();
 

@@ -6,6 +6,7 @@ import com.example.googleform.entities.Form;
 import com.example.googleform.sevice.FormService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 @RequestMapping("form")
+@Slf4j
 public class FormController {
 
     private final FormService formService;
@@ -35,8 +37,11 @@ public class FormController {
     @PostMapping
     @SneakyThrows
     public ResponseEntity<FormDTO> insert(@Valid @RequestBody FormDTO formDTO){
+        log.info("{}", formDTO);
         Form form = formService.insert(formConverter.convertToModelFromDto(formDTO));
+        log.info("{}", form);
         FormDTO formDto = formConverter.convertToDto(form);
+        log.info("{}", formDto);
         return ResponseEntity.created(new URI("/form/" + formDto.getId())).body(formDto);
     }
 
