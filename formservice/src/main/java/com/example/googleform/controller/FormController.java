@@ -37,11 +37,8 @@ public class FormController {
     @PostMapping
     @SneakyThrows
     public ResponseEntity<FormDTO> insert(@Valid @RequestBody FormDTO formDTO){
-        log.info("{}", formDTO);
         Form form = formService.insert(formConverter.convertToModelFromDto(formDTO));
-        log.info("{}", form);
         FormDTO formDto = formConverter.convertToDto(form);
-        log.info("{}", formDto);
         return ResponseEntity.created(new URI("/form/" + formDto.getId())).body(formDto);
     }
 

@@ -5,6 +5,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>formservice</module>
+		<module>eventservice</module>
+		<module>googleformintegrationtest</module>
 	</modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -14,6 +16,15 @@
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>googleform</artifactId>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+	</dependencies>
+
 	<version>0.0.1-SNAPSHOT</version>
 		<repositories>
 		<repository>

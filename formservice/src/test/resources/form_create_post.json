@@ -1,7 +1,7 @@
 {
   "name": "form1",
   "eventId": "39dc8f09-8ec5-48d9-a377-836be013d881",
-  "questionsCheckbox": [
+  "questionsCheckBox": [
     {
       "question": "please choice",
       "type": "checkbox",
@@ -16,12 +16,12 @@
     {
       "question": "how did you like",
       "type": "radio_button",
-      "values": {
-        "1": "good",
-        "2": "bad",
-        "3": "mild",
-        "4": "worse"
-      }
+      "options": [
+        "good",
+        "bad",
+        "mild",
+        "worse"
+      ]
     }
   ],
   "questionsFreeText": [

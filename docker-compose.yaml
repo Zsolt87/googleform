@@ -1,0 +1,34 @@
+services:
+  eventservice:
+    build: ./eventservice
+    ports:
+      - 5100:8080
+    environment:
+      - ENV_VAR_1=example
+    networks:
+      - backend
+
+  formservice:
+    build: ./formservice
+    ports:
+      - 5200:8080
+    environment:
+      - ENV_VAR_1=example
+    networks:
+      - backend
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo
+    hostname: mongo
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    networks:
+      - backend
+
+networks:
+  backend: {}
