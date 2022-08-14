@@ -10,5 +10,5 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources"}
 )
 public class RunTests {
-
+    public final static String HOST = "http://localhost:5200";
 }

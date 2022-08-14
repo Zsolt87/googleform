@@ -1,11 +1,32 @@
 package com.example.googleform.steps.form;
 
+import com.example.googleform.RunTests;
 import io.cucumber.java.en.Given;
-import org.junit.jupiter.api.Assertions;
+import lombok.SneakyThrows;
+
+import java.net.URI;
+import java.net.http.HttpClient;
+import java.net.http.HttpRequest;
+import java.net.http.HttpResponse;
 
 public class FormStepsDefinition {
+
+    HttpResponse response;
+
+    @SneakyThrows
     @Given("the environment is ready")
     public void the_environment_is_ready() {
-        Assertions.assertTrue(true);
+        HttpRequest request =
+                HttpRequest
+                    .newBuilder()
+                    .uri(new URI(RunTests.HOST + "/test-env"))
+                    .headers()
+                    .POST(HttpRequest.BodyPublishers.noBody())
+                    .build();
+
+        response =
+                HttpClient
+                    .newHttpClient()
+                    .send(request, HttpResponse.BodyHandlers.ofString());
     }
 }

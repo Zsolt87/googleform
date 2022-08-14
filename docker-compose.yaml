@@ -11,7 +11,7 @@ services:
   formservice:
     build: ./formservice
     ports:
-      - 5200:8080
+      - 5200:9020
     environment:
       - ENV_VAR_1=example
     networks:
