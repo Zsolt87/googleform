@@ -6,5 +6,10 @@ googleform:
 spring:
   data:
     mongodb:
-      uri: mongodb://mongoadmin:secret@mongo:27017/formdatabase?authSource=admin
+      #uri: mongodb://mongoadmin:secret@mongo:27017/formdatabase?authSource=admin
       database: formdatabase
+      host: mongo
+      port: 27017
+      authentication-database: admin
+      username: mongoadmin
+      password: secret
