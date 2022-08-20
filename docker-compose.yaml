@@ -2,27 +2,30 @@ services:
   eventservice:
     build: ./eventservice
     ports:
-      - 5100:8080
+      - "5100:8080"
     environment:
-      - ENV_VAR_1=example
+      - PROFILE=${PROFILE_ARG}
     networks:
       - backend
 
   formservice:
     build: ./formservice
     ports:
-      - 5200:9020
+      - "5200:9020"
     environment:
-      - ENV_VAR_1=example
+      - PROFILE=${PROFILE_ARG}
     networks:
       - backend
     depends_on:
       - mongo
 
   mongo:
-    image: mongo
+    image: mongo:5.0
+    container_name: mongo
+    hostname: mongo
+    restart: unless-stopped
     ports:
-      - 27017:27017
+      - "27017:27017"
     environment:
       - MONGO_INITDB_ROOT_USERNAME=mongoadmin
       - MONGO_INITDB_ROOT_PASSWORD=secret
