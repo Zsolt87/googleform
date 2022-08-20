@@ -3,13 +3,14 @@ googleform:
     batch-size: 10
     fixed-rate-ms: 600000
 
+
 spring:
   data:
     mongodb:
-      #uri: mongodb://mongoadmin:secret@mongoservice:27017/formdatabase?authSource=admin
-      database: formdatabase
-      host: mongo
-      port: 27017
-      authentication-database: admin
-      username: mongoadmin
-      password: secret
+      uri: mongodb://mongoadmin:secret@mongodb:27017/formdatabase?authSource=admin
+      #authentication-database: admin
+      #username: mongoadmin
+      #password: secret
+      #database: formdatabase
+      #port: 27017
+      #host: mongodb
