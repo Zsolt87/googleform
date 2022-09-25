@@ -3,6 +3,7 @@ package com.example.googleform.steps.form;
 import com.example.googleform.RunTests;
 import io.cucumber.java.en.Given;
 import lombok.SneakyThrows;
+import org.junit.jupiter.api.Assertions;
 
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -20,7 +21,6 @@ public class FormStepsDefinition {
                 HttpRequest
                     .newBuilder()
                     .uri(new URI(RunTests.HOST + "/test-env"))
-                    .headers()
                     .POST(HttpRequest.BodyPublishers.noBody())
                     .build();
 
@@ -28,5 +28,7 @@ public class FormStepsDefinition {
                 HttpClient
                     .newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());
+
+        Assertions.assertEquals(200, response.statusCode());
     }
 }
