@@ -1,5 +1,6 @@
 package com.example.googleform;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 import org.junit.runner.RunWith;
@@ -10,5 +11,6 @@ import org.junit.runner.RunWith;
         features = {"src/test/resources"}
 )
 public class RunTests {
-    public final static String HOST = "http://localhost:5200";
+    public static final String HOST = "http://localhost:5200";
+    public static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 }

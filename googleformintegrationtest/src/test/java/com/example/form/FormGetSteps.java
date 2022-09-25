@@ -1,4 +1,4 @@
-package com.example.googleform.steps.form;
+package com.example.form;
 
 import com.example.googleform.RunTests;
 import io.cucumber.java.en.Given;
@@ -10,17 +10,22 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class FormSteps {
-    HttpResponse response;
+public class FormGetSteps {
+    HttpResponse<String> response;
+    FormPostSteps formPostSteps;
+
+    public FormGetSteps(FormPostSteps formPostSteps) {
+        this.formPostSteps = formPostSteps;
+    }
 
     @SneakyThrows
-    @Given("user submits new form")
-    public void the_environment_is_ready() {
+    @Given("form can be queried")
+    public void form_can_be_queried() {
         HttpRequest request =
                 HttpRequest
                         .newBuilder()
-                        .uri(new URI(RunTests.HOST + "/form"))
-                        .POST(HttpRequest.BodyPublishers.noBody())
+                        .uri(new URI(RunTests.HOST + "/form/" + formPostSteps.getFormDto().getId().toString()))
+                        .GET()
                         .build();
 
         response =
