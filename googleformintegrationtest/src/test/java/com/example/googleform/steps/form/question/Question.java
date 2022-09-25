@@ -1,4 +1,4 @@
-package com.example.form.question;
+package com.example.googleform.steps.form.question;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

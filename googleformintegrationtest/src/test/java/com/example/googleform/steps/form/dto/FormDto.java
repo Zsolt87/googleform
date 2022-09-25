@@ -1,8 +1,8 @@
-package com.example.form.dto;
+package com.example.googleform.steps.form.dto;
 
-import com.example.form.question.CheckBoxQuestion;
-import com.example.form.question.FreeTextQuestion;
-import com.example.form.question.RadioButtonQuestion;
+import com.example.googleform.steps.form.question.CheckBoxQuestion;
+import com.example.googleform.steps.form.question.FreeTextQuestion;
+import com.example.googleform.steps.form.question.RadioButtonQuestion;
 import lombok.Data;
 
 import java.util.List;

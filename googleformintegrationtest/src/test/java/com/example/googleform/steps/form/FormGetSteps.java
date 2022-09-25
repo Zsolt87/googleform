@@ -1,4 +1,4 @@
-package com.example.form;
+package com.example.googleform.steps.form;
 
 import com.example.googleform.RunTests;
 import io.cucumber.java.en.Given;

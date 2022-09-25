@@ -1,7 +1,7 @@
-package com.example.form;
+package com.example.googleform.steps.form;
 
 import com.example.googleform.RunTests;
-import com.example.form.dto.FormDto;
+import com.example.googleform.steps.form.dto.FormDto;
 import io.cucumber.java.en.Given;
 import lombok.Getter;
 import lombok.SneakyThrows;
@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Assertions;
 
 import java.net.URI;
 import java.net.http.HttpClient;
+import java.net.http.HttpHeaders;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
@@ -57,10 +58,13 @@ public class FormPostSteps {
     @SneakyThrows
     @Given("user submits new form correctly")
     public void user_submits_new_form_correctly() {
+
+
         HttpRequest request =
                 HttpRequest
                         .newBuilder()
                         .uri(new URI(RunTests.HOST + "/form"))
+                        .header("Content-type", "application/json")
                         .POST(HttpRequest.BodyPublishers.ofString(FORM_REQUEST))
                         .build();
 
