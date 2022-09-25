@@ -46,13 +46,6 @@ public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
                 .formUrl(formUrlService.retrieveAvailableUrl())
                 .id(dto.getId())
                 .name(dto.getName())
-//                .questions(new ArrayList<Question>(){
-//                    {
-//                        addAll(dto.getQuestionsFreeText());
-//                        addAll(dto.getQuestionsCheckBox());
-//                        addAll(dto.getQuestionsRadioButton());
-//                    }
-//                })
                 .questions(new FormDTODecorator(dto).getMergedQuestions())
                 .status(dto.getStatus())
                 .event(eventService.getEventById(dto.getEventId()))
