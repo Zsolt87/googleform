@@ -1,6 +1,6 @@
 package com.example.googleform.sevice;
 
-import com.example.googleform.entities.Url;
+import com.example.googleform.model.Url;
 import com.example.googleform.repository.UrlDocument;
 import com.example.googleform.repository.UrlRepository;
 import lombok.AllArgsConstructor;

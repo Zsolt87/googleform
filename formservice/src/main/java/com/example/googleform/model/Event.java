@@ -1,4 +1,4 @@
-package com.example.googleform.entities;
+package com.example.googleform.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

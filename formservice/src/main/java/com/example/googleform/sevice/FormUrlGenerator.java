@@ -1,7 +1,7 @@
 package com.example.googleform.sevice;
 
 import com.example.googleform.converter.UrlConverter;
-import com.example.googleform.entities.Url;
+import com.example.googleform.model.Url;
 import com.example.googleform.repository.UrlDocument;
 import com.example.googleform.repository.UrlRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Slf4j

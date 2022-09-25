@@ -1,6 +1,5 @@
-package com.example.googleform.entities.question;
+package com.example.googleform.model.question;
 
-import lombok.ToString;
 import lombok.Value;
 
 @Value

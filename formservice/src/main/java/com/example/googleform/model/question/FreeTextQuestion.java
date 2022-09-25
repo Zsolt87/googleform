@@ -1,11 +1,10 @@
-package com.example.googleform.entities.question;
+package com.example.googleform.model.question;
 
-import lombok.Builder;
-import lombok.ToString;
+import lombok.Data;
 import lombok.Value;
 import lombok.experimental.SuperBuilder;
 
-@Value
+@Data
 @SuperBuilder
 public class FreeTextQuestion extends Question{
 }

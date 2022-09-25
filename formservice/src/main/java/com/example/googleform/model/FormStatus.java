@@ -1,4 +1,4 @@
-package com.example.googleform.entities;
+package com.example.googleform.model;
 
 public enum FormStatus {
     STARTED,

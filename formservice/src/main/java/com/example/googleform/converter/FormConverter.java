@@ -1,10 +1,10 @@
 package com.example.googleform.converter;
 
 import com.example.googleform.data.FormDTO;
-import com.example.googleform.entities.Form;
-import com.example.googleform.entities.question.CheckBoxQuestion;
-import com.example.googleform.entities.question.FreeTextQuestion;
-import com.example.googleform.entities.question.RadioButtonQuestion;
+import com.example.googleform.model.Form;
+import com.example.googleform.model.question.CheckBoxQuestion;
+import com.example.googleform.model.question.FreeTextQuestion;
+import com.example.googleform.model.question.RadioButtonQuestion;
 import com.example.googleform.repository.FormDocument;
 import com.example.googleform.sevice.EventService;
 import com.example.googleform.sevice.FormUrlService;

@@ -19,19 +19,19 @@ public class EventInitializer implements ApplicationListener<ContextRefreshedEve
     public void onApplicationEvent(ContextRefreshedEvent event) {
         repository.save(EventEntity.builder()
                 .name("Formula 1")
-                .id(UUID.randomUUID())
+                .id("event1")
                 .instant(Instant.now())
                 .build());
 
         repository.save(EventEntity.builder()
                 .name("Movie day")
-                .id(UUID.randomUUID())
+                .id("event2")
                 .instant(Instant.now())
                 .build());
 
         repository.save(EventEntity.builder()
                 .name("Fun day")
-                .id(UUID.randomUUID())
+                .id("event3")
                 .instant(Instant.now())
                 .build());
     }

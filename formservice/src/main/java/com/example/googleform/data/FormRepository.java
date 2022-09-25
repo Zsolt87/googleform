@@ -1,10 +1,7 @@
 package com.example.googleform.data;
 
-import com.example.googleform.entities.Form;
-import com.example.googleform.entities.FormStatus;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
+import com.example.googleform.model.Form;
+import com.example.googleform.model.FormStatus;
 
 import java.util.Collection;
 import java.util.HashMap;

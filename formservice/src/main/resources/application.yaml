@@ -2,6 +2,9 @@ googleform:
   url-generation:
     batch-size: 10
     fixed-rate-ms: 600000
+  event-service:
+    host: http://eventservice
+    port: 8080
 
 
 spring:

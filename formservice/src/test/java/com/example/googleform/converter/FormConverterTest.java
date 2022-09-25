@@ -1,11 +1,11 @@
 package com.example.googleform.converter;
 
 import com.example.googleform.data.FormDTO;
-import com.example.googleform.entities.Event;
-import com.example.googleform.entities.Form;
-import com.example.googleform.entities.FormStatus;
-import com.example.googleform.entities.Url;
-import com.example.googleform.entities.question.FreeTextQuestion;
+import com.example.googleform.model.Event;
+import com.example.googleform.model.Form;
+import com.example.googleform.model.FormStatus;
+import com.example.googleform.model.Url;
+import com.example.googleform.model.question.FreeTextQuestion;
 import com.example.googleform.sevice.EventService;
 import com.example.googleform.sevice.FormUrlService;
 import org.junit.jupiter.api.Test;

@@ -1,6 +1,6 @@
-package com.example.googleform.entities;
+package com.example.googleform.model;
 
-import com.example.googleform.entities.question.Question;
+import com.example.googleform.model.question.Question;
 import lombok.Builder;
 import lombok.Data;
 

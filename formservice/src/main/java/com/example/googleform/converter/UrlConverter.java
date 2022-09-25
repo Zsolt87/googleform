@@ -1,6 +1,6 @@
 package com.example.googleform.converter;
 
-import com.example.googleform.entities.Url;
+import com.example.googleform.model.Url;
 import com.example.googleform.repository.UrlDocument;
 import org.springframework.stereotype.Component;
 

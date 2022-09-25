@@ -1,15 +1,13 @@
 package com.example.googleform.sevice;
 
 import com.example.googleform.converter.FormConverter;
-import com.example.googleform.entities.Event;
-import com.example.googleform.entities.Form;
+import com.example.googleform.model.Form;
 import com.example.googleform.repository.FormDocument;
 import com.example.googleform.repository.FormRepository;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import org.springframework.stereotype.Service;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.UUID;
 

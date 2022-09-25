@@ -1,4 +1,4 @@
-package com.example.googleform.steps.form;
+package com.example.googleform.steps.envsetup;
 
 import com.example.googleform.RunTests;
 import io.cucumber.java.en.Given;
@@ -10,7 +10,7 @@ import java.net.http.HttpClient;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
 
-public class FormStepsDefinition {
+public class EnvSetupSteps {
 
     HttpResponse response;
 

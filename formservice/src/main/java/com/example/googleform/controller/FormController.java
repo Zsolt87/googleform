@@ -2,7 +2,7 @@ package com.example.googleform.controller;
 
 import com.example.googleform.converter.FormConverter;
 import com.example.googleform.data.FormDTO;
-import com.example.googleform.entities.Form;
+import com.example.googleform.model.Form;
 import com.example.googleform.sevice.FormService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;

@@ -16,7 +16,7 @@ import java.util.UUID;
 @NoArgsConstructor(force = true, access = AccessLevel.PRIVATE)
 public class EventEntity {
     @Id
-    private UUID id;
+    private String id;
     private Instant instant;
     private String name;
 }
