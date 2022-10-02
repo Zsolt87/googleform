@@ -17,3 +17,5 @@ spring:
       #database: formdatabase
       #port: 27017
       #host: mongodb
+  security.oauth2.client.registration.github.client-id: c3100b78a1f94f147985
+  security.oauth2.client.registration.github.client-secret: e9f744d9987cb53dc94b02028d15bc399a47404d
