@@ -26,22 +26,12 @@ steps:
   - script: |
       mvn test -pl formservice
     displayName: 'Running tests'
-#  - script: |
-#      echo $(demo-var1)
-#      echo $(demo-var2)
-#    displayName: 'Print Values from a Variable Group'
-#  - task: Gradle@2
-#    inputs:
-#      gradleWrapperFile: './gradlew'
-#      jdkVersionOption: '1.11'
-#      tasks: 'clean compileTestJava'
-#    displayName: 'Compile Project'
-#  - task: Gradle@2
-#    inputs:
-#      gradleWrapperFile: './gradlew'
-#      jdkVersionOption: '1.11'
-#      tasks: 'test'
-#    displayName: 'Run Unit Tests'
-#  - script: |
-#      ./gradlew build -x test
-#    displayName: 'Create the JAR file'
+  - script: |
+      mvn package -DskipTests -pl formservice
+    displayName: 'Package application'
+  - script: |
+      docker-compose up -d
+    displayName: 'Create docker images'
+  - script: |
+      docker images
+    displayName: 'Check images'
