@@ -30,8 +30,9 @@ steps:
       mvn package -DskipTests -pl formservice
     displayName: 'Package application'
   - script: |
+      mvn package -pl eventservice
       docker-compose up -d
-    displayName: 'Create docker images'
+    displayName: 'Run integration tests'
   - script: |
       docker images
     displayName: 'Check images'
