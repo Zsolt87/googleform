@@ -12,13 +12,15 @@ steps:
       docker --version
       echo $(username)
       echo $(password)
-    displayName: 'Checking Docker Version'
-#  - script: |
-#      terraform --version
-#    displayName: 'Checking Terraform Version'
-#  - script: |
-#      java --version
-#    displayName: 'Checking Java Version'
+      java --version
+      mvn --version
+    displayName: 'Checking environment'
+  - script: |
+      mvn clean compile
+    displayName: 'Compile project'
+  - script: |
+      mvn test -pl formservice
+    displayName: 'Running tests'
 #  - script: |
 #      echo $(demo-var1)
 #      echo $(demo-var2)
