@@ -5,11 +5,13 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: demo-variable-group
+  - group: docker-credentials
 
 steps:
   - script: |
       docker --version
+      echo $(username)
+      echo $(password)
     displayName: 'Checking Docker Version'
 #  - script: |
 #      terraform --version
