@@ -8,6 +8,11 @@ variables:
   - group: docker-credentials
 
 steps:
+  - task: JavaToolInstaller@0
+    inputs:
+      versionSpec: '17'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
   - script: |
       docker --version
       echo $(username)
