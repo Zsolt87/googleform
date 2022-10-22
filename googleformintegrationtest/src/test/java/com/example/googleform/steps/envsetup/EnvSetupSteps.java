@@ -30,10 +30,14 @@ public class EnvSetupSteps {
                         .build();
 
         for (Integer i: waitingTime) {
-            HttpResponse response =
-                    HttpClient
-                            .newHttpClient()
-                            .send(request, HttpResponse.BodyHandlers.ofString());
+            try{
+                HttpResponse response =
+                        HttpClient
+                                .newHttpClient()
+                                .send(request, HttpResponse.BodyHandlers.ofString());
+            }catch (Exception e){
+                log.warn("HTTP exception",e);
+            }
 
             if(response.statusCode() == 200)
                 break;
