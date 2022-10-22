@@ -25,7 +25,8 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().anyRequest().authenticated()
+        http.authorizeRequests().antMatchers("/actuator/**").permitAll()
+                .anyRequest().authenticated()
                 .and()
                 .oauth2Login();
                 //.clientRegistrationRepository(clientRegistrationRepository());

@@ -32,6 +32,7 @@ steps:
   - script: |
       mvn package -pl eventservice
       docker-compose up -d
+      mvn test -pl googleformintegrationtest
     displayName: 'Run integration tests'
   - script: |
       docker images
