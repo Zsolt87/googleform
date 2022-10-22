@@ -21,7 +21,7 @@ steps:
       mvn --version
     displayName: 'Checking environment'
   - script: |
-      mvn clean compile
+      mvn clean test-compile
     displayName: 'Compile project'
   - script: |
       mvn test -pl formservice
