@@ -35,15 +35,16 @@ public class EnvSetupSteps {
                         HttpClient
                                 .newHttpClient()
                                 .send(request, HttpResponse.BodyHandlers.ofString());
+
+                if(response.statusCode() == 200)
+                    break;
+
+                log.info("Waiting {} sec", i);
+                Thread.sleep(i*1000);
+
             }catch (Exception e){
                 log.warn("HTTP exception",e);
             }
-
-            if(response.statusCode() == 200)
-                break;
-
-            log.info("Waiting {} sec", i);
-            Thread.sleep(i*1000);
         }
     }
 
