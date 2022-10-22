@@ -3,6 +3,7 @@ package com.example.googleform.steps.envsetup;
 import com.example.googleform.RunTests;
 import io.cucumber.java.en.Given;
 import lombok.SneakyThrows;
+import lombok.extern.log4j.Log4j;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 
@@ -37,7 +38,7 @@ public class EnvSetupSteps {
             if(response.statusCode() == 200)
                 break;
 
-            log.info("Waiting for {} sec", i);
+            log.info("Waiting {} sec", i);
             Thread.sleep(i*1000);
         }
     }
