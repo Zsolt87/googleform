@@ -31,8 +31,7 @@ public class EnvSetupSteps {
         boolean wasSuccessfull = false;
         for (Integer i: waitingTime) {
             try{
-                log.info("Waiting {} sec", i);
-                Thread.sleep(i*1000);
+                log.info("Trying {i}th times", i);
                 HttpResponse response =
                         HttpClient
                                 .newHttpClient()
@@ -42,8 +41,11 @@ public class EnvSetupSteps {
                     wasSuccessfull = true;
                     break;
                 }
+                log.info("Waiting {} sec", i);
+                Thread.sleep(i*1000);
+
             }catch (Exception e){
-                log.warn("HTTP exception",e);
+                log.info("HTTP exception",e);
             }
         }
 
