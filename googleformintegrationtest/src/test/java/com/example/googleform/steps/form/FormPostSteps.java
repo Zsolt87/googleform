@@ -59,7 +59,6 @@ public class FormPostSteps {
     @Given("user submits new form correctly")
     public void user_submits_new_form_correctly() {
 
-
         HttpRequest request =
                 HttpRequest
                         .newBuilder()

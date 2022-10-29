@@ -28,6 +28,7 @@ public class Security extends WebSecurityConfigurerAdapter {
         http.csrf().disable()
                 .authorizeRequests().antMatchers("/test-env/**").permitAll()
                 .antMatchers("/actuator/**").permitAll()
+                .antMatchers("/form/**").permitAll() //todo remove
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login();
