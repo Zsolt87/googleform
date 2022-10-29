@@ -40,7 +40,10 @@ public class EnvSetupSteps {
                 if(response.statusCode() == 200){
                     wasSuccessfull = true;
                     break;
+                }else{
+                    log.info("Current HTTP code is {}", response.statusCode());
                 }
+
                 log.info("Waiting {} sec", i);
                 Thread.sleep(i*1000);
 
