@@ -15,8 +15,7 @@ import java.util.List;
 
 @Slf4j
 public class EnvSetupSteps {
-
-    private static final List<Integer> waitingTime = List.of(60,5,5,2,1,1);
+    private static final List<Integer> waitingTime = List.of(10,5,5,2,1,1);
 
     @SneakyThrows
     @Given("the service is running")
@@ -29,10 +28,11 @@ public class EnvSetupSteps {
                         .build();
 
         boolean wasSuccessfull = false;
-        log.info("Started service running step");
         for (Integer i: waitingTime) {
             try{
                 log.info("Trying {}th times", i);
+                log.info("Waiting {} sec", i);
+                Thread.sleep(i * 1000);
                 HttpResponse response =
                         HttpClient
                                 .newHttpClient()
@@ -41,20 +41,12 @@ public class EnvSetupSteps {
                 if(response.statusCode() == 200){
                     wasSuccessfull = true;
                     break;
-                }else{
-                    log.info("Current HTTP code is {}", response.statusCode());
                 }
             }catch (Exception e){
                 log.info("HTTP exception",e);
             }
-
-            log.info("Waiting {} sec", i);
-            Thread.sleep(i * 1000);
         }
-
-        System.out.println("Finished service running step");
         Assertions.assertTrue(wasSuccessfull);
-
     }
 
     @SneakyThrows
