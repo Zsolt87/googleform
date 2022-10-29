@@ -25,7 +25,9 @@ public class Security extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers("/actuator/**").permitAll()
+        http.csrf().disable()
+                .authorizeRequests().antMatchers("/test-env/**").permitAll()
+                .antMatchers("/actuator/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .oauth2Login();

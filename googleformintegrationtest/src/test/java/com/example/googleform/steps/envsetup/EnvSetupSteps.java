@@ -16,7 +16,6 @@ import java.util.List;
 @Slf4j
 public class EnvSetupSteps {
 
-    HttpResponse response;
     private static final List<Integer> waitingTime = List.of(60,5,5,2,1,1);
 
     @SneakyThrows
@@ -63,7 +62,7 @@ public class EnvSetupSteps {
                     .POST(HttpRequest.BodyPublishers.noBody())
                     .build();
 
-        response =
+        HttpResponse response =
                 HttpClient
                     .newHttpClient()
                     .send(request, HttpResponse.BodyHandlers.ofString());

@@ -4,6 +4,7 @@ import com.example.googleform.sevice.TestSetupRestService;
 import lombok.AllArgsConstructor;
 import org.springframework.context.annotation.Profile;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,5 +19,10 @@ public class TestSetupRestController {
     @PostMapping
     public ResponseEntity cleanUp(){
         return testSetupRestService.cleanUp();
+    }
+
+    @GetMapping
+    public String hello(){
+        return "hello";
     }
 }
