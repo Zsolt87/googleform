@@ -17,7 +17,7 @@ import java.util.List;
 public class EnvSetupSteps {
 
     HttpResponse response;
-    private static final List<Integer> waitingTime = List.of(10,5,5,2,1,1);
+    private static final List<Integer> waitingTime = List.of(60,5,5,2,1,1);
 
     @SneakyThrows
     @Given("the service is running")

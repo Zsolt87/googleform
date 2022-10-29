@@ -32,7 +32,7 @@ steps:
   - script: |
       mvn package -pl eventservice
       docker-compose up -d
-      mvn test -pl googleformintegrationtest
+      mvn test -X -pl googleformintegrationtest
       docker logs $(docker container ls --all | grep formservice | awk '{print $1}')
     displayName: 'Run integration tests'
   - script: |
