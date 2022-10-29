@@ -29,6 +29,7 @@ public class EnvSetupSteps {
                         .build();
 
         boolean wasSuccessfull = false;
+        log.info("Started service running step");
         for (Integer i: waitingTime) {
             try{
                 log.info("Trying {i}th times", i);
@@ -52,6 +53,7 @@ public class EnvSetupSteps {
             }
         }
 
+        System.out.println("Finished service running step");
         Assertions.assertTrue(wasSuccessfull);
 
     }
