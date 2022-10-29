@@ -31,9 +31,9 @@ steps:
     displayName: 'Package application'
   - script: |
       mvn package -pl eventservice
-      docker-compose up &> log.txt &
+      docker-compose up -d
       mvn test -pl googleformintegrationtest
-      cat log.txt
+      docker logs $(docker container ls --all | grep formservice | awk '{print $1}')
     displayName: 'Run integration tests'
   - script: |
       docker images

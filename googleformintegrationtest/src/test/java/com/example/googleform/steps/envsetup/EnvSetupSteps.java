@@ -29,6 +29,7 @@ public class EnvSetupSteps {
                         .GET()
                         .build();
 
+        boolean wasSuccessfull = false;
         for (Integer i: waitingTime) {
             try{
                 HttpResponse response =
@@ -36,9 +37,10 @@ public class EnvSetupSteps {
                                 .newHttpClient()
                                 .send(request, HttpResponse.BodyHandlers.ofString());
 
-                if(response.statusCode() == 200)
+                if(response.statusCode() == 200){
+                    wasSuccessfull = true;
                     break;
-
+                }
                 log.info("Waiting {} sec", i);
                 Thread.sleep(i*1000);
 
@@ -46,6 +48,9 @@ public class EnvSetupSteps {
                 log.warn("HTTP exception",e);
             }
         }
+
+        Assertions.assertTrue(wasSuccessfull);
+
     }
 
     @SneakyThrows
