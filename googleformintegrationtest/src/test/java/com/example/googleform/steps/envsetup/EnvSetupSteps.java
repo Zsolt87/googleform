@@ -32,7 +32,7 @@ public class EnvSetupSteps {
         log.info("Started service running step");
         for (Integer i: waitingTime) {
             try{
-                log.info("Trying {i}th times", i);
+                log.info("Trying {}th times", i);
                 HttpResponse response =
                         HttpClient
                                 .newHttpClient()
@@ -44,13 +44,12 @@ public class EnvSetupSteps {
                 }else{
                     log.info("Current HTTP code is {}", response.statusCode());
                 }
-
-                log.info("Waiting {} sec", i);
-                Thread.sleep(i*1000);
-
             }catch (Exception e){
                 log.info("HTTP exception",e);
             }
+
+            log.info("Waiting {} sec", i);
+            Thread.sleep(i * 1000);
         }
 
         System.out.println("Finished service running step");
