@@ -13,6 +13,11 @@ steps:
       versionSpec: '17'
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
+  - task: InstallSSHKey@0
+      inputs:
+        knownHostsEntry: $(knownHosts)
+        sshPublicKey: $(publicKey)
+        sshKeySecureFile: 'id_rsa'
   - script: |
       docker --version
       echo $(username)
