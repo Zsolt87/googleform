@@ -39,6 +39,8 @@ steps:
       docker images
     displayName: 'Check images'
   - script: |
+      git config --global user.email "azure_dummy@example.com"
+      git config --global user.name "Azure Dummy"
       tag=$(git rev-parse --short HEAD)
       echo $tag
       git tag -a $tag -m "my version ${tag}"
