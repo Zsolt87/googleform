@@ -14,11 +14,13 @@ steps:
       versionSpec: '17'
       jdkArchitectureOption: 'x64'
       jdkSourceOption: 'PreInstalled'
+    displayName: 'Install Java17'
   - task: InstallSSHKey@0
     inputs:
       knownHostsEntry: $(knownHosts)
       sshPublicKey: $(publicKey)
       sshKeySecureFile: 'id_rsa'
+    displayName: 'Install SSH'
   - script: |
       docker --version
       echo $(username)
@@ -45,9 +47,11 @@ steps:
       docker images
     displayName: 'Check images'
   - script: |
+      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
       git config --global user.email "azure_dummy@example.com"
       git config --global user.name "Azure Dummy"
       tag=$(git rev-parse --short HEAD)
       echo $tag
       git tag -a $tag -m "my version ${tag}"
       git push origin $tag
+    displayName: 'Git tag and push'
