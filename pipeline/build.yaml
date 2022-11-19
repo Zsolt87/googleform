@@ -6,6 +6,7 @@ pool:
 
 variables:
   - group: docker-credentials
+  - group: git-configurations
 
 steps:
   - task: JavaToolInstaller@0
