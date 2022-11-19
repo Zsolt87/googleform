@@ -38,3 +38,8 @@ steps:
   - script: |
       docker images
     displayName: 'Check images'
+  - script: |
+      tag=$(git rev-parse --short HEAD)
+      echo $tag
+      git tag -a $tag -m "my version ${tag}"
+      git push origin $tag

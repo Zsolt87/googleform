@@ -61,31 +61,31 @@
     </pluginRepository>
   </pluginRepositories>
 
-  <scm>
-    <!-- You would think this is a Public Read-Only connection, but it allows for authenticated PUSH too -->
-    <developerConnection>scm:git:ssh://git@github.com:Zsolt87/googleform.git</developerConnection>
-    <connection>scm:git:ssh://git@github.com:Zsolt87/googleform.git</connection>
-    <!-- Private Read-Write connection - Untested so far-->
-    <!-- <connection>scm:git:ssh://github.com/matthewmccullough/maven-training-samplegitscm.git</connection> -->
-    <url>http://https://github.com/Zsolt87/googleform/tree/master</url>
-  </scm>
+<!--  <scm>-->
+<!--    &lt;!&ndash; You would think this is a Public Read-Only connection, but it allows for authenticated PUSH too &ndash;&gt;-->
+<!--    <developerConnection>scm:git:ssh://git@github.com:Zsolt87/googleform.git</developerConnection>-->
+<!--    <connection>scm:git:ssh://git@github.com:Zsolt87/googleform.git</connection>-->
+<!--    &lt;!&ndash; Private Read-Write connection - Untested so far&ndash;&gt;-->
+<!--    &lt;!&ndash; <connection>scm:git:ssh://github.com/matthewmccullough/maven-training-samplegitscm.git</connection> &ndash;&gt;-->
+<!--    <url>http://https://github.com/Zsolt87/googleform/tree/master</url>-->
+<!--  </scm>-->
 
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>com.github.danielflower.mavenplugins</groupId>
-          <artifactId>multi-module-maven-release-plugin</artifactId>
-          <version>3.6.1</version>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>com.github.danielflower.mavenplugins</groupId>
-        <artifactId>multi-module-maven-release-plugin</artifactId>
-        <version>3.6.1</version>
-      </plugin>
-    </plugins>
-  </build>
+<!--  <build>-->
+<!--    <pluginManagement>-->
+<!--      <plugins>-->
+<!--        <plugin>-->
+<!--          <groupId>com.github.danielflower.mavenplugins</groupId>-->
+<!--          <artifactId>multi-module-maven-release-plugin</artifactId>-->
+<!--          <version>3.6.1</version>-->
+<!--        </plugin>-->
+<!--      </plugins>-->
+<!--    </pluginManagement>-->
+<!--    <plugins>-->
+<!--      <plugin>-->
+<!--        <groupId>com.github.danielflower.mavenplugins</groupId>-->
+<!--        <artifactId>multi-module-maven-release-plugin</artifactId>-->
+<!--        <version>3.6.1</version>-->
+<!--      </plugin>-->
+<!--    </plugins>-->
+<!--  </build>-->
 </project>
