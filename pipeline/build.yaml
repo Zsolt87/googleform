@@ -57,8 +57,9 @@ steps:
     displayName: 'Git tag and push'
   - script: |
       docker login -u $(username) -p $(password) docker.io
-      tag=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
-      echo $tag
-      docker tag googleform_formservice "angfehervar/education:${tag}"
+      git tag --sort=committerdate -l
+      tag_name=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
+      echo $tag_name
+      docker tag googleform_formservice "angfehervar/education:${tag_name}"
       docker images
-      docker push "angfehervar/education:${tag}"
+      docker push "angfehervar/education:${tag_name}"
