@@ -55,6 +55,7 @@ steps:
       git tag -a $tag -m "my version ${tag}"
       git push origin $tag
     displayName: 'Git tag and push'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - script: |
       docker login -u $(username) -p $(password) docker.io
       git tag --sort=committerdate -l
@@ -63,3 +64,5 @@ steps:
       docker tag s_formservice "angfehervar/education:${tag_name}"
       docker images
       docker push "angfehervar/education:${tag_name}"
+    displayName: 'Docker push'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
