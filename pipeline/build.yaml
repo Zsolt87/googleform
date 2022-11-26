@@ -58,7 +58,7 @@ steps:
   - script: |
       docker login -u $(username) -p $(password) docker.io
       tag=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
-      docker tag googleform_formservice angfehervar/education:$tag
-      docker push angfehervar/education:$tag
+      docker tag googleform_formservice "angfehervar/education:${tag}"
+      docker push "angfehervar/education:${tag}"
     env:
       ENV_USERNAME: $(username)
