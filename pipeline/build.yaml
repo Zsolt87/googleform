@@ -60,4 +60,5 @@ steps:
       tag=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
       echo $tag
       docker tag googleform_formservice "angfehervar/education:${tag}"
+      docker images
       docker push "angfehervar/education:${tag}"
