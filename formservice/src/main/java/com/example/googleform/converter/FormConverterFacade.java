@@ -1,10 +1,9 @@
 package com.example.googleform.converter;
 
-import com.example.googleform.entities.Form;
-import com.example.googleform.entities.question.CheckBoxQuestion;
-import com.example.googleform.entities.question.FreeTextQuestion;
-import com.example.googleform.entities.question.Question;
-import com.example.googleform.entities.question.RadioButtonQuestion;
+import com.example.googleform.model.Form;
+import com.example.googleform.model.question.CheckBoxQuestion;
+import com.example.googleform.model.question.FreeTextQuestion;
+import com.example.googleform.model.question.RadioButtonQuestion;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,10 +1,10 @@
 package com.example.googleform.converter;
 
 import com.example.googleform.data.FormDTO;
-import com.example.googleform.entities.Form;
-import com.example.googleform.entities.question.CheckBoxQuestion;
-import com.example.googleform.entities.question.FreeTextQuestion;
-import com.example.googleform.entities.question.RadioButtonQuestion;
+import com.example.googleform.model.Form;
+import com.example.googleform.model.question.CheckBoxQuestion;
+import com.example.googleform.model.question.FreeTextQuestion;
+import com.example.googleform.model.question.RadioButtonQuestion;
 import com.example.googleform.repository.FormDocument;
 import com.example.googleform.sevice.EventService;
 import com.example.googleform.sevice.FormUrlService;
@@ -12,12 +12,13 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @Component
 public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
 
-    private final FormUrlService formUrlGenerator;
+    private final FormUrlService formUrlService;
     private final EventService eventService;
 
     @Override
@@ -29,7 +30,8 @@ public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
         List<RadioButtonQuestion> radioButtonQuestions = formDecorator.getRadioButtonQuestions();
 
         return FormDTO.builder().name(model.getName())
-                .eventId(model.getEvent().getId())
+                //TODO
+                .eventId(model.getEvent() == null ? null : model.getEvent().getId())
                 .id(model.getId())
                 .questionsCheckBox(checkBoxQuestions)
                 .questionsFreeText(freeTextQuestions)
@@ -41,16 +43,9 @@ public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
     public Form convertToModelFromDto(FormDTO dto) {
 
         return Form.builder()
-                .formUrl(formUrlGenerator.generateUrl())
+                .formUrl(formUrlService.retrieveAvailableUrl())
                 .id(dto.getId())
                 .name(dto.getName())
-//                .questions(new ArrayList<Question>(){
-//                    {
-//                        addAll(dto.getQuestionsFreeText());
-//                        addAll(dto.getQuestionsCheckBox());
-//                        addAll(dto.getQuestionsRadioButton());
-//                    }
-//                })
                 .questions(new FormDTODecorator(dto).getMergedQuestions())
                 .status(dto.getStatus())
                 .event(eventService.getEventById(dto.getEventId()))
@@ -61,7 +56,7 @@ public class FormConverter implements Converter<FormDTO, Form, FormDocument> {
     public FormDocument convertToDocument(Form form) {
         return FormDocument.builder()
                 .name(form.getName())
-                .id(form.getId())
+                .id(form.getId() == null ? UUID.randomUUID() : form.getId() )
                 .formUrl(form.getFormUrl())
                 .status(form.getStatus())
                 .questions(form.getQuestions())

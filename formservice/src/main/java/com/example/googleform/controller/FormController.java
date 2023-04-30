@@ -2,10 +2,11 @@ package com.example.googleform.controller;
 
 import com.example.googleform.converter.FormConverter;
 import com.example.googleform.data.FormDTO;
-import com.example.googleform.entities.Form;
+import com.example.googleform.model.Form;
 import com.example.googleform.sevice.FormService;
 import lombok.AllArgsConstructor;
 import lombok.SneakyThrows;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,6 +18,7 @@ import java.util.UUID;
 @RestController
 @AllArgsConstructor
 @RequestMapping("form")
+@Slf4j
 public class FormController {
 
     private final FormService formService;

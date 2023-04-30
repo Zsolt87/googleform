@@ -1,7 +1,7 @@
 package com.example.googleform.sevice;
 
 import com.example.googleform.data.EventRepository;
-import com.example.googleform.entities.Event;
+import com.example.googleform.model.Event;
 import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;

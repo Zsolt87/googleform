@@ -1,8 +1,7 @@
 package com.example.googleform.data;
 
-import com.example.googleform.entities.Event;
+import com.example.googleform.model.Event;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
