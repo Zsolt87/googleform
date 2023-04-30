@@ -1,0 +1,70 @@
+trigger:
+  - feature/auth
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: docker-credentials
+  - group: git-configurations
+
+steps:
+  - script: |
+      az login --service-principal -u "$(servicePrincipalId)" -p "$(servicePrincipalPw)" --tenant "$(tenant)"
+      az account set --subscription="$(subscription)"
+    displayName: 'Login With Service Principal'
+  - task: JavaToolInstaller@0
+    inputs:
+      versionSpec: '17'
+      jdkArchitectureOption: 'x64'
+      jdkSourceOption: 'PreInstalled'
+    displayName: 'Install Java17'
+  - task: InstallSSHKey@0
+    inputs:
+      knownHostsEntry: $(knownHosts)
+      sshPublicKey: $(publicKey)
+      sshKeySecureFile: 'id_rsa'
+    displayName: 'Install SSH'
+  - script: |
+      docker --version
+      echo $(username)
+      echo $(password)
+      java --version
+      mvn --version
+    displayName: 'Checking environment'
+  - script: |
+      mvn clean test-compile
+    displayName: 'Compile project'
+  - script: |
+      mvn test -pl formservice
+    displayName: 'Running tests'
+  - script: |
+      mvn package -DskipTests -pl formservice
+    displayName: 'Package application'
+  - script: |
+      mvn package -pl eventservice
+      docker-compose up -d
+      mvn test -X -pl googleformintegrationtest
+      docker logs $(docker container ls --all | grep formservice | awk '{print $1}')
+    displayName: 'Run integration tests'
+  - script: |
+      docker images
+    displayName: 'Check images'
+  - script: |
+      git config --global --add url."git@github.com:".insteadOf "https://github.com/"
+      git config --global user.email "azure_dummy@example.com"
+      git config --global user.name "Azure Dummy"
+      tag=$(git rev-parse --short HEAD)
+      echo $tag
+      git tag -a $tag -m "my version ${tag}"
+      git push origin $tag
+    displayName: 'Git tag and push'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  - script: |
+      tag_name=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
+      docker tag s_formservice "advancedjavaacr.azurecr.io/formservice:${tag_name}"
+      az acr login --name advancedjavaacr.azurecr.io
+      docker images
+      docker push "advancedjavaacr.azurecr.io/formservice:${tag_name}"
+    displayName: 'Docker push'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))

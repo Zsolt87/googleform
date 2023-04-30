@@ -1,7 +1,7 @@
 package com.example.googleform.converter;
 
 import com.example.googleform.data.FormDTO;
-import com.example.googleform.entities.question.Question;
+import com.example.googleform.model.question.Question;
 import lombok.AllArgsConstructor;
 
 import java.util.List;

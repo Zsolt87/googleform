@@ -1,7 +1,7 @@
 package com.example.googleform.data;
 
-import com.example.googleform.entities.FormStatus;
-import com.example.googleform.entities.question.*;
+import com.example.googleform.model.FormStatus;
+import com.example.googleform.model.question.*;
 import lombok.*;
 
 import javax.validation.constraints.NotNull;

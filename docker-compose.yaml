@@ -1,0 +1,36 @@
+services:
+  eventservice:
+    build: ./eventservice
+    container_name: eventservice
+    ports:
+      - "5100:8080"
+    environment:
+      - PROFILE=${PROFILE_ARG}
+    networks:
+      - backend
+
+  formservice:
+    build: ./formservice
+    container_name: formservice
+    ports:
+      - "5200:9020"
+    environment:
+      - PROFILE=${PROFILE_ARG}
+    networks:
+      - backend
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=mongoadmin
+      - MONGO_INITDB_ROOT_PASSWORD=secret
+    networks:
+      - backend
+
+networks:
+  backend: {}

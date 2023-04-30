@@ -1,0 +1,21 @@
+googleform:
+  url-generation:
+    batch-size: 10
+    fixed-rate-ms: 600000
+  event-service:
+    host: http://eventservice
+    port: 8080
+
+
+spring:
+  data:
+    mongodb:
+      uri: mongodb+srv://zsoltfehervari87:training87@cluster0.seqlaws.mongodb.net/?retryWrites=true&w=majority
+      #authentication-database: admin
+      #username: mongoadmin
+      #password: secret
+      #database: formdatabase
+      #port: 27017
+      #host: mongodb
+  security.oauth2.client.registration.github.client-id: c3100b78a1f94f147985
+  security.oauth2.client.registration.github.client-secret: e9f744d9987cb53dc94b02028d15bc399a47404d

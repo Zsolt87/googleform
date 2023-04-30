@@ -1,9 +1,9 @@
 package com.example.googleform.repository;
 
-import com.example.googleform.entities.Event;
-import com.example.googleform.entities.FormStatus;
-import com.example.googleform.entities.Url;
-import com.example.googleform.entities.question.Question;
+import com.example.googleform.model.Event;
+import com.example.googleform.model.FormStatus;
+import com.example.googleform.model.Url;
+import com.example.googleform.model.question.Question;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
