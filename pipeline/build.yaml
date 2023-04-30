@@ -5,8 +5,8 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
-  - group: docker-credentials
   - group: git-configurations
+  - group: service-principal-variable-group
 
 steps:
   - script: |
