@@ -69,7 +69,7 @@ steps:
     displayName: 'Git tag and push'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - script: |
-      tag_name=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
+      tag_name=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-' | tail -1)
       docker tag s_formservice "advancedjavaacr.azurecr.io/formservice:${tag_name}"
       az acr login --name advancedjavaacr.azurecr.io
       docker images
@@ -77,7 +77,7 @@ steps:
     displayName: 'Docker push'
   - script: |
       helm package $(helmFolder)
-      version=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
+      version=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-'| tail -1)
       helm registry login advancedjavaacr.azurecr.io --username "$(servicePrincipalId)" --password "$(servicePrincipalPw)"
       helm push googleform-$version.tgz oci://advancedjavaacr.azurecr.io/helm
     displayName: 'Helm package'
