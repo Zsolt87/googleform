@@ -54,13 +54,15 @@ steps:
     displayName: 'Check images'
   - script: |
       helm show chart $(helmFolder) | awk '/version:/ {print $2}' | awk -F. '{print $1"."$2"."$3+1}' | xargs -I {} sed -i.bak "s/version:.*/version: {}/" $(helmFolder)/Chart.yaml
+      tag=$(helm show chart $(helmFolder) | awk '/version:/ {print $2}')
+      sed -i 's/todo/$tag/g' $(helmFolder)/values.yaml
     displayName: 'Define version'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - script: |
       git config --global --add url."git@github.com:".insteadOf "https://github.com/"
       git config --global user.email "azure_dummy@example.com"
       git config --global user.name "Azure Dummy"
-      tag=$(helm show chart $(helmFolder) | awk '/version:/ {print $2}')
+      tag=formservice-$(helm show chart $(helmFolder) | awk '/version:/ {print $2}')
       echo $tag
       git tag -a $tag -m "my version ${tag}"
       git push origin $tag

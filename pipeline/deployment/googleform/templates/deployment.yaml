@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
         - name: {{ .Values.deployment.name }}
-          image: advancedjavaacr.azurecr.io/formservice:0.0.1.0
+          image: advancedjavaacr.azurecr.io/formservice:{{ .Values.deployment.version }}
           ports:
             - containerPort: 80
           volumeMounts:

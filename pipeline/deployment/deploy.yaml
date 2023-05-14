@@ -1,0 +1,29 @@
+trigger: none
+pr: none
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  - group: service-principal-variable-group
+
+  - job: helmApply
+    steps:
+      - task: HelmInstaller@1
+        inputs:
+          helmVersionToInstall: 'latest'
+      - script: |
+          az login --service-principal -u "$(servicePrincipalId)" -p "$(servicePrincipalPw)" --tenant "$(tenant)"
+          az account set --subscription="$(subscription)"
+        displayName: 'Login With Service Principal'
+      - script: |
+          az aks get-credentials --resource-group advancedjava-resources --name codehuntersaks1
+        displayName: 'Get AKS'
+      - script: |
+          az acr helm show -n advancedjavaacr googleform
+          version=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
+          helm registry login advancedjavaacr.azurecr.io --username "$(servicePrincipalId)" --password "$(servicePrincipalPw)"
+          az acr helm repo add -n advancedjavaacr
+          helm upgrade googleform oci://advancedjavaacr.azurecr.io/helm/googleform --version $version --force --install --namespace googleform --create-namespace --wait
+        displayName: 'Apply helm'
+        env:
+          HELM_EXPERIMENTAL_OCI: 1
