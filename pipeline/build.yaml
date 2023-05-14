@@ -7,6 +7,8 @@ pool:
 variables:
   - group: git-configurations
   - group: service-principal-variable-group
+  - name: helmFolder
+    value: ./pipeline/deployment/googleform
 
 steps:
   - script: |
@@ -67,4 +69,10 @@ steps:
       docker images
       docker push "advancedjavaacr.azurecr.io/formservice:${tag_name}"
     displayName: 'Docker push'
+  - script: |
+      helm package $(helmFolder)
+      version=$(helm show chart $(helmFolder) | awk '/version:/ {print $2}')
+      helm registry login advancedjavaacr.azurecr.io --username "$(servicePrincipalId)" --password "$(servicePrincipalPw)"
+      helm push googleform-$version.tgz oci://advancedjavaacr.azurecr.io/helm
+    displayName: 'Helm package'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))

@@ -1,0 +1,10 @@
+deployment:
+  name: googleform
+service:
+  name: googleformservice
+secret:
+  UserAssignedIdentityId: 2ae516fe-4f1f-48d3-a051-aacf5465c4a8
+autoscaling:
+  minReplicas: 1
+  maxReplicas: 2
+  targetCPUUtilizationPercentage: 15
