@@ -19,7 +19,7 @@ steps:
     displayName: 'Get AKS'
   - script: |
       az acr helm show -n advancedjavaacr googleform
-      version=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-')
+      version=$(git tag --sort=committerdate -l | grep formser | cut -f 2 -d'-' | tail -1)
       helm registry login advancedjavaacr.azurecr.io --username "$(servicePrincipalId)" --password "$(servicePrincipalPw)"
       az acr helm repo add -n advancedjavaacr
       helm upgrade googleform oci://advancedjavaacr.azurecr.io/helm/googleform --version $version --force --install --namespace googleform --create-namespace --wait
