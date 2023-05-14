@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.deployment.name }}
+  namespace: {{ .Release.Namespace }}
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: {{ .Values.deployment.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.deployment.name }}
+    spec:
+      containers:
+        - name: {{ .Values.deployment.name }}
+          image: advancedjavaacr.azurecr.io/formservice:0.0.1.0
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: secrets-store-inline
+              mountPath: "/mnt/secrets-store"
+              readOnly: true
+          env:
+            - name: SECRET_ENV_VAR
+              valueFrom:
+                secretKeyRef:
+                  name: env-credentials
+                  key: secret-key
+      volumes:
+        - name: secrets-store-inline
+          csi:
+            driver: secrets-store.csi.k8s.io
+            readOnly: true
+            volumeAttributes:
+              secretProviderClass: "azuresecretproviderclass"
