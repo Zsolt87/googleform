@@ -55,7 +55,7 @@ steps:
   - script: |
       helm show chart $(helmFolder) | awk '/version:/ {print $2}' | awk -F. '{print $1"."$2"."$3+1}' | xargs -I {} sed -i.bak "s/version:.*/version: {}/" $(helmFolder)/Chart.yaml
       tag=$(helm show chart $(helmFolder) | awk '/version:/ {print $2}')
-      sed -i 's/todo/$tag/g' $(helmFolder)/values.yaml
+      sed -i "s/todo/$tag/g" $(helmFolder)/values.yaml
     displayName: 'Define version'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   - script: |
