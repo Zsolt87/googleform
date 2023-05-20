@@ -10,7 +10,7 @@ googleform:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://zsoltfehervari87:training87@cluster0.seqlaws.mongodb.net/formdatabase?retryWrites=true&w=majority
+      uri: mongodb+srv://almakorte32:${SECRET_ENV_VAR}@cluster0.seqlaws.mongodb.net/formdatabase?retryWrites=true&w=majority
       #authentication-database: admin
       #username: mongoadmin
       #password: secret
